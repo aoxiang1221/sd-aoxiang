@@ -1,4 +1,4 @@
-name: Sync with controlnet
+name: Sync with tagger
 
 on:
   schedule:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: main
       - name: Set up Git
@@ -22,5 +22,5 @@ jobs:
           git remote add upstream https://github.com/picobyte/stable-diffusion-webui-wd14-tagger
           git fetch upstream
           git checkout main
-          git reset --hard upstream/main
-          git push origin main:controlnet --force
+          git reset --hard upstream/master
+          git push origin main:tagger --force
