@@ -22,4 +22,7 @@ jobs:
           git remote add upstream https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
           git fetch upstream
           git reset --hard upstream/master
+          rm -rf .github/workflows/*
+          git add .
+          git commit -m "remove"
           git push origin main:master --force
