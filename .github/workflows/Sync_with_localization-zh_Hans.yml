@@ -9,20 +9,17 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v3
+      - name: Checkout out
+        uses: actions/checkout@v4
         with:
-          ref: main
+          repository: hanamizuki-ai/stable-diffusion-webui-localization-zh_Hans
+          ref: master
+          path: .
       - name: Set up Git
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config --local user.email "github-action@users.noreply.github.com"
+          git config --local user.name "GitHub Action"
       - name: Sync with localization-zh_Hans
         run: |
-          git remote add upstream https://github.com/hanamizuki-ai/stable-diffusion-webui-localization-zh_Hans.git
-          git fetch upstream
-          git reset --hard upstream/master
-          rm -rf .github/workflows/*
-          git add .
-          git commit -m "remove"
-          git push origin main:localization-zh_Hans --force
+          git remote add github https://github-action:$GITHUB_TOKEN@github.com/aoxiang1221/sd-aoxiang.git
+          git push -f github master:localization-zh_Hans
